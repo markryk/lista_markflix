@@ -33,17 +33,24 @@ a{
 h1{
   font-size: 48px;
   color: #ff0000;
-  padding: 10px 0;
-  font-family: Arial,sans-serif;
+  //padding: 10px 0;
+  font-family: Bebas Neue, sans-serif;
   font-weight: bold;
   text-align: center;
-  padding-bottom: 30px;
+  
   text-transform: uppercase;
+}
+
+h1#lista {
+  font-family: 'Merienda', cursive;
+  color: black;
+  text-transform: unset;
 }
 
 h2 {
   font-size: 20px;
   font-family: 'Merienda', cursive;
+  text-align: center;
 }
 
 p{

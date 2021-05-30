@@ -9,7 +9,19 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING
 	    },
 	    duracao: {
-			type: Sequelize.STRING
+			type: Sequelize.INTEGER
+	    }, 
+		sinopse: {
+			type: Sequelize.TEXT
+	    }, 
+		ano: {
+			type: Sequelize.INTEGER
+	    }, 
+		classif: {
+			type: Sequelize.INTEGER
+	    }, 
+		nota: {
+			type: Sequelize.DECIMAL
 	    }
 	});
 	

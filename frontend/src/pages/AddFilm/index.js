@@ -9,9 +9,17 @@ export default class CadastroFilme extends Component{
         novoFilme: {
             titulo:'',
             duracao:'',
+            sinopse:'', 
+            ano:'', 
+            classif:'', 
+            nota:''
         },
         cad_titulo:'',
         cad_duracao:'',
+        sinopse:'', 
+        cad_ano:'', 
+        cad_classif:'', 
+        cad_nota:''
     };
 
 
@@ -23,12 +31,28 @@ export default class CadastroFilme extends Component{
       this.setState({cad_duracao: e.target.value});
     };
 
+    handleSinopseChange = e =>{
+      this.setState({cad_sinopse: e.target.value});
+    };
+
+    handleAnoChange = e =>{
+      this.setState({cad_ano: e.target.value});
+    };
+
+    handleClassifChange = e =>{
+      this.setState({cad_classif: e.target.value});
+    };
+
+    handleNotaChange = e =>{
+      this.setState({cad_nota: e.target.value});
+    };
+
     handleOnSubmit = async e =>{
         e.preventDefault();
         
-        const {cad_titulo, cad_duracao} = this.state;
+        const {cad_titulo, cad_duracao, cad_sinopse, cad_ano, cad_classif, cad_nota} = this.state;
 
-        const Filme = {'titulo':cad_titulo, 'duracao':cad_duracao}
+        const Filme = {'titulo':cad_titulo, 'duracao':cad_duracao, 'sinopse':cad_sinopse, 'ano':cad_ano, 'classif':cad_classif, 'nota':cad_nota}
 
         await api.post(`/filme`, Filme)
         .then(console.log(Filme))
@@ -39,7 +63,7 @@ export default class CadastroFilme extends Component{
 
     render(){
 
-        const {cad_titulo, cad_duracao} = this.state;
+        const {'titulo':cad_titulo, 'duracao':cad_duracao, 'sinopse':cad_sinopse, 'ano':cad_ano, 'classif':cad_classif, 'nota':cad_nota} = this.state;
 
         return(
           <div className="container" > 
@@ -51,15 +75,40 @@ export default class CadastroFilme extends Component{
                   <h2> Inserir filme </h2>
                   <br></br>
                     
-                  <p> 
+                  <p>
                     <label> Título </label>
-                    <input required="required" type="text" placeholder="Digite o título"
-                          value={cad_titulo} onChange={this.handleTituloChange}/>
+                    <input required="required" type="text" placeholder=""
+                    value={cad_titulo} onChange={this.handleTituloChange}/>
                   </p>
 
                   <p> 
-                    <label> Duração </label>
-                    <input required="required" type="text" placeholder="Digite a duração" value={cad_duracao} onChange={this.handleDuracaoChange}/> 
+                    <label> Duração (em minutos) </label>
+                    <input required="required" type="text" placeholder=""
+                    value={cad_duracao} onChange={this.handleDuracaoChange}/> 
+                  </p>
+
+                  <p>
+                    <label> Sinopse </label>
+                    <input type="text" placeholder=""
+                    value={cad_sinopse} onChange={this.handleSinopseChange}/>
+                  </p>
+
+                  <p>
+                    <label> Ano </label>
+                    <input required="required" type="text" placeholder=""
+                    value={cad_ano} onChange={this.handleAnoChange}/>
+                  </p>
+
+                  <p>
+                    <label> Classificação indicativa </label>
+                    <input required="required" type="text" placeholder=""
+                    value={cad_classif} onChange={this.handleClassifChange}/>
+                  </p>
+
+                  <p>
+                    <label> Nota </label>
+                    <input required="required" type="text" placeholder=""
+                    value={cad_nota} onChange={this.handleNotaChange}/>
                   </p>
 
                   <p> 

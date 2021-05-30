@@ -9,11 +9,15 @@ exports.createFilme = (req, res) => {
         // Capturando os dados do body e criando a constante filme.
         filme.titulo = req.body.titulo;
         filme.duracao = req.body.duracao;
+        filme.sinopse = req.body.sinopse;
+        filme.ano = req.body.ano;
+        filme.classif = req.body.classif;
+        filme.nota = req.body.nota;
     
         // Salvar filme no banco de dados.
         //{attributes: ['id', 'titulo', 'duracao', 'ano', 'sinopse', 'classificacao', 'atores', 'imagem']})
 
-        Filme.create(filme, {attributes: ['id', 'titulo', 'duracao']})
+        Filme.create(filme, {attributes: ['id', 'titulo', 'duracao', 'sinopse', 'ano', 'classif', 'nota']})
                     .then(result => {    
                       res.status(200).json(result);
                     });
@@ -27,7 +31,7 @@ exports.createFilme = (req, res) => {
 
 exports.getFilme = (req, res) => {
     Filme.findByPk(req.params.id, 
-                        {attributes: ['id', 'titulo', 'duracao']})
+                        {attributes: ['id', 'titulo', 'duracao', 'sinopse', 'ano', 'classif', 'nota']})
         .then(filme => {
           res.status(200).json(filme);
         }).catch(error => {
@@ -44,7 +48,7 @@ exports.getFilme = (req, res) => {
 exports.filmes = (req, res) => {
     // Buscar todos os registros da tabela 
     try{
-        Filme.findAll({attributes: ['id', 'titulo', 'duracao']})
+        Filme.findAll({attributes: ['id', 'titulo', 'duracao', 'sinopse', 'ano', 'classif', 'nota']})
         .then(filmes => {
             res.status(200).json(filmes);
         })
@@ -96,12 +100,16 @@ exports.updateFilme = async (req, res) => {
             let updatedObject = {
                 titulo: req.body.titulo,
                 duracao: req.body.duracao,
+                sinopse: req.body.sinopse,
+                ano: req.body.ano,
+                classif: req.body.classif,
+                nota: req.body.nota
             }
             let result = await Filme.update(updatedObject,
                               { 
                                 returning: true, 
                                 where: {id: req.body.id},
-                                attributes: ['id', 'titulo', 'duracao']
+                                attributes: ['id', 'titulo', 'duracao', 'sinopse', 'ano', 'classif', 'nota']
                               }
                             );
 
