@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.INTEGER
 	    }, 
 		nota: {
-			type: Sequelize.DECIMAL
+			type: Sequelize.FLOAT
 	    }
 	});
 	
